@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body{
+    overflow-x: hidden;
+    font-size: 16px;
+}
+
+#root{
+    width: 100vw;
+    height: 100vh;
+    margin: auto auto;
+    position: relative;
+    max-width: 1200px;
+}
+
+.main-container{
+    border: 1px dotted red;
+}
+
+.selected{
+    opacity: .6;
+}
+
+.completed{
+    pointer-events: none;
+    opacity: .4;
+}

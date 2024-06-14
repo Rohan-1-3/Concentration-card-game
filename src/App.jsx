@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect} from 'react';
+import './App.css';
+import { useFetchDogs } from './customHooks/useFetchDogs';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const {dogs, setCount,handleClick, gameOver} = useFetchDogs(4);
+
+  useEffect(()=>{
+    console.log(dogs)
+  },[dogs])
+
 
   return (
     <>
-      <div className=' mar'>
-        <a href="https://vitejs.dev" target="_blank" >
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className='main-container flex max-w-6xl flex-wrap justify-around gap-4'>
+        {gameOver ?
+          (<div>Game Over</div>)
+          :
+          <>
+            {dogs.map(dog => (
+              <div onClick={()=>handleClick(dog)} key={dog.id} className={`${dog.selected ? "selected" : ""} ${dog.completed ? "completed" : ""}`}>
+                <img className='w-60 h-60' src={dog.imageUrl} alt={dog.name.toUpperCase()}/>
+              </div>
+            ))}
+          </>
+        }
       </div>
-      <h1 className='text-red-400 italic font-bold underline'>Vite + React</h1>
-      <div className="card font-bold">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
