@@ -26,5 +26,6 @@ export default {
   theme: {
     extend: {},
   },
+  darkMode: 'selector',
   plugins: [Myclass],
 }

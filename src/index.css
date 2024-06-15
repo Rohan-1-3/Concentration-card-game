@@ -14,17 +14,3 @@ body{
     position: relative;
     max-width: 1200px;
 }
-
-.main-container{
-    border: 1px dotted red;
-    margin: auto auto;
-}
-
-.selected{
-    opacity: .6;
-}
-
-.completed{
-    pointer-events: none;
-    opacity: .4;
-}

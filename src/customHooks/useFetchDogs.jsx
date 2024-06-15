@@ -95,7 +95,9 @@ export const useFetchDogs = (initialCount) => {
     };
 
     getDogsInfo();
+    setGameOver(false);
+    setPoint(0)
   }, [count]);
 
-  return { dogs, setCount, handleClick, gameOver };
+  return { dogs, setCount, handleClick, gameOver , setGameOver};
 };
