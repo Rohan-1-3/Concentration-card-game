@@ -1,4 +1,3 @@
-import { useEffect} from 'react';
 import './App.css';
 import { useFetchDogs } from './customHooks/useFetchDogs';
 import DogCard from './DogCard';

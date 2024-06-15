@@ -53,11 +53,11 @@ export const useFetchDogs = (initialCount) => {
   const checkForCompletion = () => {
     const [firstSelected, secondSelected] = selected;
 
-    if (firstSelected.name === secondSelected.name) {
+    if (firstSelected.imageUrl === secondSelected.imageUrl) {
       setPoint(prev => prev + 1);
       setDogs(currentDogs =>
         currentDogs.map(dog =>
-          dog.name === firstSelected.name || dog.name === secondSelected.name
+          dog.imageUrl === firstSelected.imageUrl || dog.imageUrl === secondSelected.imageUrl
             ? { ...dog, completed: true }
             : dog
         )
