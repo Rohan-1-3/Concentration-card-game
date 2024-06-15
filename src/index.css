@@ -17,6 +17,7 @@ body{
 
 .main-container{
     border: 1px dotted red;
+    margin: auto auto;
 }
 
 .selected{

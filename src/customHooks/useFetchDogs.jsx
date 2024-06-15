@@ -7,18 +7,26 @@ export const useFetchDogs = (initialCount) => {
   const [selected, setSelected] = useState([]);
   const [point, setPoint] = useState(0);
   const [gameOver, setGameOver] = useState(false);
+  const [isChecking, setIsChecking] = useState(false);
 
-  useEffect(()=>{
-    if(selected.length > 1){
-        setSelected([]);
+  useEffect(() => {
+    if (selected.length > 1) {
+      setSelected([]);
+
+      setIsChecking(true);
+      setTimeout(() => {
+        setIsChecking(false);
         setDogs(dogs.map(dog => ({ ...dog, selected: false })));
+        checkForCompletion();
+      }, 1000);
     }
-  },[selected])
+  }, [selected, dogs]);
 
-  useEffect(()=>{
-    if(point/2 === count)
-        setGameOver(true);
-  },[point])
+  useEffect(() => {
+    if (point === count) {
+      setGameOver(true);
+    }
+  }, [point]);
 
   function shuffleArray(array) {
     const shuffledArray = [...array];
@@ -29,33 +37,33 @@ export const useFetchDogs = (initialCount) => {
     return shuffledArray;
   }
 
-  const handleClick = (tempDog)=>{
-    // Assuming you have setSelected function from useState
-
-    const updatedDogs = dogs.map(dog => {
-        if (dog.id === tempDog.id) {
-        // Update selected state outside of the map function
-        setSelected(prev => [...prev, dog]);
-        // Return a new object with selected property updated
-        return { ...dog, selected: true };
-        } else {
-        return dog; // Return unchanged object
-        }
-    });
-
-  let newUpdatedDogs = updatedDogs;
-  if(selected.length > 0){
-    newUpdatedDogs = updatedDogs.map(dog =>{
-        if(dog.name === selected[0].name && tempDog.name === selected[0].name){
-            setPoint(prev => prev+1);
-            return {...dog, completed : true};
-        }else return dog
+  const handleClick = (tempDog) => {
+    if (gameOver || isChecking || tempDog.completed || tempDog.selected) {
+      return;
     }
-    )
-  }
 
-    setDogs(newUpdatedDogs);
-  }
+    setSelected(prevSelected => [...prevSelected, tempDog]);
+    setDogs(currentDogs =>
+      currentDogs.map(dog =>
+        dog.id === tempDog.id ? { ...dog, selected: true } : dog
+      )
+    );
+  };
+
+  const checkForCompletion = () => {
+    const [firstSelected, secondSelected] = selected;
+
+    if (firstSelected.name === secondSelected.name) {
+      setPoint(prev => prev + 1);
+      setDogs(currentDogs =>
+        currentDogs.map(dog =>
+          dog.name === firstSelected.name || dog.name === secondSelected.name
+            ? { ...dog, completed: true }
+            : dog
+        )
+      );
+    }
+  };
 
   useEffect(() => {
     const getDogsInfo = async () => {
@@ -83,12 +91,11 @@ export const useFetchDogs = (initialCount) => {
         setDogs(newShuffledDogs);
       } catch (error) {
         console.error('Error fetching data:', error);
-        // Optionally handle error state or retry mechanism here
       }
     };
 
     getDogsInfo();
   }, [count]);
 
-  return { dogs, setCount, handleClick, gameOver};
+  return { dogs, setCount, handleClick, gameOver };
 };
