@@ -1,6 +1,6 @@
 # Concentration Card Game with Dogs - README
 
-Site -> ![Live Priview](https://rohan-1-3.github.io/Concentration-card-game/)
+Site -> [Live Priview](https://rohan-1-3.github.io/Concentration-card-game/)
 
 ## Project Description
 This project is a digital implementation of the classic Concentration card game using images of dogs. Players can enjoy multiple levels of difficulty, each challenging their memory and concentration skills.
