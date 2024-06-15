@@ -13,8 +13,8 @@ This project is a digital implementation of the classic Concentration card game 
 7. [License](#license)
 
 ## Demo
-![Game Demo](demo.gif)
-*Include a GIF or screenshot showcasing your game in action.*
+![Game Demo](https://i.ibb.co/3pD3vRn/Screenshot-2024-06-15-124257.png)
+
 
 ## Features
 - **Tailwind CSS Integration**: The game's UI is styled using Tailwind CSS, providing a modern and responsive design.
@@ -28,7 +28,7 @@ This project is a digital implementation of the classic Concentration card game 
 - **Tailwind CSS**: Utility-first CSS framework for styling the user interface.
 - **JavaScript/ES6**: Programming language used for game logic and interactivity.
 - **HTML/CSS**: Basic building blocks for the structure and styling of the game.
-- **npm/yarn**: Package managers for installing and managing dependencies.
+- **npm**: Package managers for installing and managing dependencies.
 
 ## Installation
 To run the game locally, follow these steps:
